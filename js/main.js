@@ -1,13 +1,3 @@
-// id, число — идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться.
-
-// url, строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
-
-// description, строка — описание фотографии. Описание придумайте самостоятельно.
-
-// likes, число — количество лайков, поставленных фотографии. Случайное число от 15 до 200.
-
-// comments, массив объектов — список комментариев, оставленных другими пользователями к этой фотографии. Количество комментариев к каждой фотографии — случайное число от 0 до 30. Все комментарии генерируются случайным образом. Пример описания объекта с комментарием:
-
 const SIMILAR_PHOTO_COUNT = 25;
 
 const DESCRIPTIONS = [
@@ -50,17 +40,18 @@ const getIndex = () => {
   };
 };
 
-//как сделать уникальный id ??
+const counterCommentID = getIndex();
+const counterPhotoID = getIndex();
+
 const createComment = () => ({
-  id: getIndex()(),
+  id: counterCommentID(),
   avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
   message: MESSAGES[getRandomInteger(0, 5)],
   name: getRandomArrayElement(NAMES),
 });
 
-//как сделать уникальный id ??
 const createPhoto = () => ({
-  id: getIndex()(),
+  id: counterPhotoID(),
   url: `photos/${getRandomInteger(1, 25)}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(15, 200),
