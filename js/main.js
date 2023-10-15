@@ -8,7 +8,7 @@
 
 // comments, массив объектов — список комментариев, оставленных другими пользователями к этой фотографии. Количество комментариев к каждой фотографии — случайное число от 0 до 30. Все комментарии генерируются случайным образом. Пример описания объекта с комментарием:
 
-const PHOTO_COUNT = 25;
+const SIMILAR_PHOTO_COUNT = 25;
 
 const DESCRIPTIONS = [
   '#choreography #танец',
@@ -43,28 +43,30 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (array) => array[getRandomInteger(0, array.length - 1)];
 
-const createMessage = () =>
-  Array.from({ length: getRandomInteger(1, 2) }, () =>
-    getRandomArrayElement(MESSAGES)
-  ).join(' ');
+const getIndex = () => {
+  let index = 0;
+  return function() {
+    return ++index;
+  };
+};
 
 //как сделать уникальный id ??
 const createComment = () => ({
-  id: getRandomInteger(0, 1000),
+  id: getIndex()(),
   avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-  message: createMessage(),
+  message: MESSAGES[getRandomInteger(0, 5)],
   name: getRandomArrayElement(NAMES),
 });
 
 //как сделать уникальный id ??
 const createPhoto = () => ({
-  id: getRandomInteger(0, 1000),
+  id: getIndex()(),
   url: `photos/${getRandomInteger(1, 25)}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(15, 200),
   comments: Array.from({length: getRandomInteger(0, 30)}, createComment),
 });
 
-const similarPhotos = Array.from({length: 25}, createPhoto);
+const similarPhotos = Array.from({length: SIMILAR_PHOTO_COUNT}, createPhoto);
 
 // console.log(similarPhotos);
