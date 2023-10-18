@@ -40,3 +40,26 @@ function toIntNumber(str) {
 // console.log(toIntNumber(2023)); // 2023
 // console.log(toIntNumber(-1));   // 1
 // console.log(toIntNumber(1.5));  // 15
+
+function workTimeBalance(startWorkDay, endWorkDay, startMeeting, continueMeeting) { //eslint-disable-line no-unused-vars
+  function timeinMinutes(stringTime) {
+    const arrayTime = stringTime.split(':');
+    return +arrayTime[0] * 60 + +arrayTime[1];
+  }
+  const startDayTime = timeinMinutes(startWorkDay);
+  const endDayTime = timeinMinutes(endWorkDay);
+  const startMeetingTime = timeinMinutes(startMeeting);
+  const endMeetingTime = startMeetingTime + continueMeeting;
+
+  if (startDayTime <= startMeetingTime && endDayTime >= endMeetingTime) {
+    return true;
+  }
+  return false;
+}
+
+// console.log(workTimeBalance('08:00', '17:30', '14:00', 90)); // true
+// console.log(workTimeBalance('8:0', '10:0', '8:0', 120)); // true
+// console.log(workTimeBalance('08:00', '14:30', '14:00', 90)); // false
+// console.log(workTimeBalance('14:00', '17:30', '08:0', 90)); // false
+// console.log(workTimeBalance('8:00', '17:30', '08:00', 900)); // false
+
