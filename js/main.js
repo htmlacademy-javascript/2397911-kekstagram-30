@@ -1,7 +1,7 @@
 import {getPhoto} from './data.js';
-import { renderPictures } from './thumbnail.js';
+import { renderThumbnails } from './thumbnail.js';
 
 getPhoto();
-renderPictures(getPhoto());
+renderThumbnails(getPhoto());
 console.log(getPhoto());
 
