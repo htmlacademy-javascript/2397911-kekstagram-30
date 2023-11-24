@@ -25,7 +25,6 @@ const openFullSizePhoto = () => {
   bigPictureModal.classList.remove('hidden');
   body.classList.add('modal-open');
   socialCommentList.innerHTML = '';
-
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
