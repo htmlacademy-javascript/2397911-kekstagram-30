@@ -1,6 +1,5 @@
 const bigPictureModal = document.querySelector('.big-picture');
-const bigPictureImg = bigPictureModal
-  .querySelector('.big-picture__img')
+const bigPictureImg = bigPictureModal.querySelector('.big-picture__img')
   .querySelector('img');
 const likesCount = bigPictureModal.querySelector('.likes-count');
 const commentsCount = bigPictureModal.querySelector('.comments-count');
