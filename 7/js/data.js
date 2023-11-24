@@ -1,4 +1,4 @@
-import { getRandomInteger, getRandomArrayElement, createIdGenerator } from './util.js';
+import { createIdGenerator, getRandomInteger, getRandomArrayElement } from './util.js';
 
 const PICTURE_COUNT = 25;
 const AVATAR_COUNT = 6;
@@ -21,7 +21,6 @@ const DESCRIPTIONS = [
 ];
 
 const NAMES = [  'Алена',
-  'Алина',
   'Анастасия',
   'Александр',
   'Максим',
