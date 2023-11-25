@@ -21,6 +21,7 @@ const renderThumbnails = (pictures, container) => {
     const thumbnail = createThumbnail(picture);
     fragment.append(thumbnail);
   });
+
   container.append(fragment);
 };
 
