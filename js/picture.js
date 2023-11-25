@@ -45,11 +45,6 @@ const renderComments = () => {
   totalCommentCountElement.textContent = comments.length;
 };
 
-// const initCommentList = () => {
-//   commentCountElement.classList.add('hidden');
-//   commentsLoaderElement.classList.add('hidden');
-// };
-
 const onCommentsLoaderClick = () => renderComments();
 
 const hidePicture = () => {
@@ -87,8 +82,6 @@ const showPicture = (pictureData) => {
   if (comments.length > 0) {
     renderComments();
   }
-
-  // initCommentList();
 };
 
 closeButtonElement.addEventListener('click', onClosePictureButtonClick);
