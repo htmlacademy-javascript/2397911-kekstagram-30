@@ -20,7 +20,7 @@ const DESCRIPTIONS = [
   '#healthylifestyle #зож #отдых',
 ];
 
-const NAMES = [  'Алена',
+const NAMES = [ 'Алена',
   'Алина',
   'Анастасия',
   'Александр',
