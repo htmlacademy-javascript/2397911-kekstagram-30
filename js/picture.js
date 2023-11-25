@@ -1,7 +1,3 @@
-
-// import { isEscapeKey } from './util.js';
-// import { renderComments, initCommentList } from './comment.js';
-
 const bigPictureElement = document.querySelector('.big-picture');
 const bodyElement = document.querySelector('body');
 const closeButtonElement = bigPictureElement.querySelector('.big-picture__cancel');
