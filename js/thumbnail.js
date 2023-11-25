@@ -13,16 +13,16 @@ const createThumbnail = ({url, description, comments, likes}) => {
   thumbnail.querySelector('.picture__likes').textContent = likes;
 
   return thumbnail;
-}
+};
 
 const renderThumbnails = (pictures) => {
   const fragment = document.createDocumentFragment();
-  pictures.array.forEach(element => {
+  pictures.array.forEach((element) => {
     const thumbnail = createThumbnail(element);
     fragment.append(thumbnail);
   });
 
   container.append(fragment);
-}
+};
 
 export {renderThumbnails};
