@@ -8,6 +8,7 @@ import { showSuccessMessage, showErrorMessage } from './message.js';
 
 const MAX_HASHTAG_COUNT = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const ErrorText = {
   INVALID_COUNT: `Максимум ${MAX_HASHTAG_COUNT} хештегов`,
   NOT_UNIQUE: 'Хештеги должны быть уникальными',
@@ -27,14 +28,10 @@ const fileField = form.querySelector('.img-upload__input');
 const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
 const submitButton = form.querySelector('.img-upload__submit');
+const photoPreview = form.querySelector('.img-upload__preview img');
+const effectsPreviews = form.querySelectorAll('.effects__preview');
 
-function toggleSubmitButton(isDisabled) {
-  submitButton.disabled = isDisabled;
-
-  submitButton.textContent = isDisabled
-    ? SubmitButtonCaption.SUBMITTING
-    : SubmitButtonCaption.IDLE;
-}
+// let url = null;
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -56,11 +53,25 @@ const hideModal = () => {
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
+  // url.revokeObjectURL();
 };
+
+function toggleSubmitButton(isDisabled) {
+  submitButton.disabled = isDisabled;
+
+  submitButton.textContent = isDisabled
+    ? SubmitButtonCaption.SUBMITTING
+    : SubmitButtonCaption.IDLE;
+}
 
 const isTextFieldFocused = () =>
   document.activeElement === hashtagField ||
     document.activeElement === commentField;
+
+const isValidType = (file) => {
+  const fileName = file.name.toLowerCase();
+  return FILE_TYPES.some((it) => fileName.endsWith(it));
+};
 
 const normalizeTags = (tagString) => tagString
   .trim()
@@ -92,6 +103,15 @@ const onCancelButtonClick = () => {
 };
 
 const onFileInputChange = () => {
+  const file = fileField.files[0];
+
+  if (file && isValidType(file)) {
+    // url = URL.createObjectURL(file);
+    photoPreview.src = URL.createObjectURL(file);
+    effectsPreviews.forEach((preview) => {
+      preview.style.backgroundImage = `url('${photoPreview.src}')`;
+    });
+  }
   showModal();
 };
 
