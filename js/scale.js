@@ -1,6 +1,6 @@
 const SCALE_STEP = 25;
 const MIN_SCALE = 25;
-const MAX_SCALE = 25;
+const MAX_SCALE = 100;
 const DEFAULT_SCALE = 100;
 
 const modalElement = document.querySelector('.img-upload');
@@ -22,7 +22,7 @@ const onSmallerButtonClick = () => {
 
 const onBiggerButtonClick = () => {
   scaleImage(
-    Math.max(parseInt(scaleInputElement.value, 10) + SCALE_STEP, MAX_SCALE)
+    Math.min(parseInt(scaleInputElement.value, 10) + SCALE_STEP, MAX_SCALE)
   );
 };
 
