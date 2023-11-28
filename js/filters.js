@@ -53,21 +53,10 @@ const repaint = (evt, filter, data) => {
   }
 };
 
-// const defaultClickhandler = (data) => {
-//   const data = filterHandlers[FilterEnum.DEFAULT](data);
-// };
-// const randomClickhandler = (data) => {
-//   const data = filterHandlers[FilterEnum.RANDOM](data);
-// };
-// const discussedClickhandler = (data) => {
-//   const data = filterHandlers[FilterEnum.DISCUSSED](data);
-// };
-
 const debouncedRepaint = debounce(repaint);
 
 const initFilter = (data) => {
   filtersElement.classList.remove('img-filters--inactive');
-  // const filtered = filterHandlers[FilterEnum.DISCUSSED](data);
   defaultBtn.addEventListener('click', (evt) => {
     debouncedRepaint(evt, FilterEnum.DEFAULT, data);
   });

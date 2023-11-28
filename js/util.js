@@ -5,25 +5,25 @@ const errorMessageTemplate = document
   .content
   .querySelector('.data-error');
 
-function showErrorMessage() {
+const showErrorMessage = () => {
   const errorElement = errorMessageTemplate.cloneNode(true);
   document.body.append(errorElement);
 
   setTimeout(() => {
     errorElement.remove();
   }, REMOVE_MESSAGE_TIMEOUT);
-}
+};
 
-function debounce (callback, timeoutDelay = 500) {
+const debounce = (callback, timeoutDelay = 500) => {
   let timeoutId;
 
   return (...rest) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
-}
+};
 
-function throttle (callback, delayBetweenFrames) {
+const throttle = (callback, delayBetweenFrames) => {
   let lastTime = 0;
 
   return (...rest) => {
@@ -33,6 +33,6 @@ function throttle (callback, delayBetweenFrames) {
       lastTime = now;
     }
   };
-}
+};
 
 export { showErrorMessage, debounce, throttle };

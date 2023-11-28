@@ -31,8 +31,6 @@ const submitButton = form.querySelector('.img-upload__submit');
 const photoPreview = form.querySelector('.img-upload__preview img');
 const effectsPreviews = form.querySelectorAll('.effects__preview');
 
-// let url = null;
-
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
@@ -53,7 +51,6 @@ const hideModal = () => {
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-  // url.revokeObjectURL();
 };
 
 function toggleSubmitButton(isDisabled) {
@@ -87,9 +84,7 @@ const hasUniqueTags = (value) => {
   return lowerCaseTags.length === new Set(lowerCaseTags).size;
 };
 
-function isErrorMessageExists() {
-  return Boolean(document.querySelector('.error'));
-}
+const isErrorMessageExists = () => Boolean(document.querySelector('.error'));
 
 function onDocumentKeydown(evt) {
   if (evt.key === 'Escape' && !isTextFieldFocused() && !isErrorMessageExists()) {
@@ -106,7 +101,6 @@ const onFileInputChange = () => {
   const file = fileField.files[0];
 
   if (file && isValidType(file)) {
-    // url = URL.createObjectURL(file);
     photoPreview.src = URL.createObjectURL(file);
     effectsPreviews.forEach((preview) => {
       preview.style.backgroundImage = `url('${photoPreview.src}')`;
@@ -115,7 +109,7 @@ const onFileInputChange = () => {
   showModal();
 };
 
-async function sendForm(formElement) {
+const sendForm = async (formElement) => {
   if (! pristine.validate()) {
     return;
   }
@@ -130,7 +124,7 @@ async function sendForm(formElement) {
     showErrorMessage();
     toggleSubmitButton(false);
   }
-}
+};
 
 const onFormSubmit = (evt) => {
   evt.preventDefault();
@@ -144,6 +138,7 @@ pristine.addValidator(
   3,
   true
 );
+
 pristine.addValidator(
   hashtagField,
   hasUniqueTags,
@@ -151,6 +146,7 @@ pristine.addValidator(
   2,
   true
 );
+
 pristine.addValidator(
   hashtagField,
   hasValidTags,
