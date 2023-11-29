@@ -28,13 +28,13 @@ const toIntNumber = (str) => {
 toIntNumber('2023 год');
 
 const workTimeBalance = (startWorkDay, endWorkDay, startMeeting, continueMeeting) => {
-  function timeinMinutes(stringTime) {
+  const timeInMinutes = (stringTime) => {
     const arrayTime = stringTime.split(':');
     return +arrayTime[0] * 60 + +arrayTime[1];
-  }
-  const startDayTime = timeinMinutes(startWorkDay);
-  const endDayTime = timeinMinutes(endWorkDay);
-  const startMeetingTime = timeinMinutes(startMeeting);
+  };
+  const startDayTime = timeInMinutes(startWorkDay);
+  const endDayTime = timeInMinutes(endWorkDay);
+  const startMeetingTime = timeInMinutes(startMeeting);
   const endMeetingTime = startMeetingTime + continueMeeting;
 
   if (startDayTime <= startMeetingTime && endDayTime >= endMeetingTime) {

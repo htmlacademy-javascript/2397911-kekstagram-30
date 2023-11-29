@@ -140,13 +140,13 @@ const reset = () => {
   setEffect(Effect.DEFAULT);
 };
 
-const onEffectChange = (evt) => {
+const changeEffect = (evt) => {
   setEffect(evt.target.value);
 };
 
-const init = () => {
+const initialize = () => {
   createSlider(effectToSliderOptions[chosenEffect]);
-  effectsElement.addEventListener('change', onEffectChange);
+  effectsElement.addEventListener('change', changeEffect);
 };
 
-export { init, reset };
+export { initialize, reset };

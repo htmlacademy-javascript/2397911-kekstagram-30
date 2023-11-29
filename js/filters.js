@@ -20,15 +20,15 @@ const getRandomIndex = (min, max) => Math.floor(Math.random() * (max - min));
 const filterHandlers = {
   [FilterEnum.DEFAULT]: (data) => data,
   [FilterEnum.RANDOM]: (data) => {
-    const randomIndexList = [];
+    const randomIndexes = [];
     const max = Math.min(MAX_RANDOM_FILTER, data.length);
-    while (randomIndexList.length < max) {
+    while (randomIndexes.length < max) {
       const index = getRandomIndex(0, data.length);
-      if (! randomIndexList.includes(index)) {
-        randomIndexList.push(index);
+      if (! randomIndexes.includes(index)) {
+        randomIndexes.push(index);
       }
     }
-    return randomIndexList.map((index) => data[index]);
+    return randomIndexes.map((index) => data[index]);
   },
 
 
@@ -55,7 +55,7 @@ const repaint = (evt, filter, data) => {
 
 const debouncedRepaint = debounce(repaint);
 
-const initFilter = (data) => {
+const initializeFilter = (data) => {
   filtersElement.classList.remove('img-filters--inactive');
   defaultBtn.addEventListener('click', (evt) => {
     debouncedRepaint(evt, FilterEnum.DEFAULT, data);
@@ -68,4 +68,4 @@ const initFilter = (data) => {
   });
 };
 
-export { initFilter, debouncedRepaint };
+export { initializeFilter, debouncedRepaint };

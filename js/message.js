@@ -34,14 +34,14 @@ function hideMessage() {
   document.body.removeEventListener('click', onBodyClick);
 }
 
-function showMessage(element, buttonClass) {
+const showMessage = (element, buttonClass) => {
   document.body.append(element);
   document.body.addEventListener('click',onBodyClick);
   document.addEventListener('keydown', onDocumentKeydown);
   element
     .querySelector(buttonClass)
     .addEventListener('click', onCloseButtonClick);
-}
+};
 
 const showSuccessMessage = () => {
   showMessage(successMessageElement, '.success__button');

@@ -14,11 +14,12 @@ const commentElement = document.querySelector('#comment').content.querySelector(
 let commentsCountShown = 0;
 let comments = [];
 
-const createComment = function ({ avatar, message, name }) {
+const createComment = ({ avatar, message, name }) => {
   const newComment = commentElement.cloneNode(true);
+  const socialPicture = newComment.querySelector('.social__picture');
 
-  newComment.querySelector('.social__picture').src = avatar;
-  newComment.querySelector('.social__picture').alt = name;
+  socialPicture.src = avatar;
+  socialPicture.alt = name;
   newComment.querySelector('.social__text').textContent = message;
 
   return newComment;
@@ -66,8 +67,9 @@ function onDocumentKeydown(evt) {
 }
 
 const renderPicture = ({ url, description, likes }) => {
-  bigPictureElement.querySelector('.big-picture__img img').src = url;
-  bigPictureElement.querySelector('.big-picture__img img').alt = description;
+  const bigPicture = bigPictureElement.querySelector('.big-picture__img img');
+  bigPicture.src = url;
+  bigPicture.alt = description;
   bigPictureElement.querySelector('.likes-count').textContent = likes;
   bigPictureElement.querySelector('.social__caption').textContent = description;
 };
