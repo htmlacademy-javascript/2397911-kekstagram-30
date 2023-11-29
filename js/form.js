@@ -1,6 +1,6 @@
 import { resetScale } from './scale.js';
 import {
-  init as initEffect,
+  initialize as initializeEffect,
   reset as resetEffect
 } from './effect.js';
 import { sendPicture } from './api.js';
@@ -53,13 +53,13 @@ const hideModal = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
-function toggleSubmitButton(isDisabled) {
+const toggleSubmitButton = (isDisabled) => {
   submitButton.disabled = isDisabled;
 
   submitButton.textContent = isDisabled
     ? SubmitButtonCaption.SUBMITTING
     : SubmitButtonCaption.IDLE;
-}
+};
 
 const isTextFieldFocused = () =>
   document.activeElement === hashtagField ||
@@ -159,4 +159,4 @@ pristine.addValidator(
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
-initEffect();
+initializeEffect();
